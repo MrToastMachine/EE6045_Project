@@ -26,5 +26,5 @@ for i=1:1:Nbit
 end
 
 weights=2.^[0:1:Nbit-1];
-weights=fliplr(weights);
+weights=fliplr(weights); % binary num position weights
 sum(sar.*weights)

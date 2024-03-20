@@ -47,8 +47,13 @@ if coherent         %%% To calculate m prime number for fi with coherent samplin
 fi=closest_prime*fs/N;
 end
 
-%sim('Lab2_ADC_modeling.slx')
-sim('Lab2_ADC_modeling_SAR.slx')
+use_flash_model = 1; % choose which simulink model to use 
+
+if use_flash_model
+    sim('Lab2_ADC_modeling.slx')
+else
+    sim('Lab2_ADC_modeling_SAR.slx')
+end
 
 %%%%%%%%%%% Plot and process data to calculate SNR and ENOB  %%%%%%%%%%%%
 

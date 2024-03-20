@@ -6,8 +6,10 @@ close all
 ampl   = 0.45;    %%% Amplitude for the sine wave
 offset = 0.5;    %%% Offset for the sine wave
 fi     = 1e6;    %%% Frequency for the sine wave  
+
 fs     = 100e6;  %%% Sampling Frequency    100e6
 Ts     = 1/fs;   %%% Sampling period for the sampling clock.
+
 alpha  = 10;     %%% Number of hits per code
 Nbit   = 10;     %%% Number of bits in the ADC in simulink
 N      = 4096;   %%% Number of simulation points
@@ -44,7 +46,7 @@ if coherent         %%% To calculate m prime number for fi with coherent samplin
         closest_prime = larger_prime;
     end
 
-fi=closest_prime*fs/N;
+fi=closest_prime*fs/N
 end
 
 sim('Lab1_Simulink_model.slx')
