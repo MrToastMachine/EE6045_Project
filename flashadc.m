@@ -3,6 +3,10 @@ clear all
 
 vin=0.65;                    %%Input voltage to ADC
 
+% Github Notes:
+% LSB = Vref / 2^NBit   ==> but again, Vref is set to 1 with no mention
+% really in this code there should be a variable called Vref, ya-hear!
+
 Nbit=4 ;                     %%Number of bits
 LSB=1/2^Nbit;               %%LSB size (considers Vp=1 and Vn=0)
 rladder=[1:1:2^Nbit-1]*LSB; %%%Reference voltage generation.\
