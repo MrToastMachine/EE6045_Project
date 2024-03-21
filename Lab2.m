@@ -8,9 +8,11 @@ offset = 0.5;    %%% Offset for the sine wave
 fi     = 1e6;    %%% Frequency for the sine wave  
 fs     = 100e6;  %%% Sampling Frequency    100e6
 Ts     = 1/fs;   %%% Sampling period for the sampling clock.
+
+
 alpha  = 10;     %%% Number of hits per code
 Nbit   = 10;     %%% Number of bits in the ADC in simulink
-N      = 4096;   %1024*alpha   %%% Number of simulation points
+N      = 1024 * alpha;   %1024*alpha   %%% Number of simulation points
 OSR    = 1;      %%% OverSampling Ratio, 1 > for Sigma-Delta and NS-SARs.   
 
 
@@ -47,7 +49,7 @@ if coherent         %%% To calculate m prime number for fi with coherent samplin
 fi=closest_prime*fs/N;
 end
 
-use_flash_model = 1; % choose which simulink model to use 
+use_flash_model = 0; % choose which simulink model to use 
 
 if use_flash_model
     sim('Lab2_ADC_modeling.slx')
@@ -57,7 +59,7 @@ end
 
 %%%%%%%%%%% Plot and process data to calculate SNR and ENOB  %%%%%%%%%%%%
 
-[snr, enob] = gs_fresp(simout, N, fs, fi, OSR, 1)
+[snr, enob] = gs_fresp(simout, N, fs, fi, OSR, 1);
 
-[inl, dnl]=gs_inldnl(simout, Nbit , alpha );
+[inl, dnl]=gs_inldnl(simout, Nbit , alpha);
  

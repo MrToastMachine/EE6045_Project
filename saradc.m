@@ -12,11 +12,28 @@ Vcdac = 1./2.^[1:1:Nbit];   %%Voltage vector from CDAC.
 
 vx = -vin;                  %%%Models bottom plate sampling
 
+sar=ones(1,Nbit);           %%%Formal initialization of variable
+
+weights=2.^[0:1:Nbit-1];
+weights=fliplr(weights); % binary num position weights
+
+% PART (i) Capacitor mismatch
+p = 0.1/100;
+% randn('seed', 31233);
+randn('seed', 31232);
+mismatch = randn(1,Nbit)*p
+
+Vcdac = Vcdac.*(1+mismatch);
+
+comp_p = 0.0/100;
+comparator_mismatch = randn(1,Nbit)*comp_p
+
+
 for i=1:1:Nbit
 
     vx=vx+Vcdac(i);         %%%Bit Trial
     
-        if vx > 0;          %%%Comparator Model  
+        if vx > comparator_mismatch(i);          %%%Comparator Model  
             sar(i)=0;       %%%SAR resolution
                 vx=vx-Vcdac(i); %%%Bit trial goes low
         else
@@ -25,6 +42,4 @@ for i=1:1:Nbit
     end
 end
 
-weights=2.^[0:1:Nbit-1];
-weights=fliplr(weights); % binary num position weights
 sum(sar.*weights)
