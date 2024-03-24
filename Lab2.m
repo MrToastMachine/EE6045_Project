@@ -12,7 +12,16 @@ Ts     = 1/fs;   %%% Sampling period for the sampling clock.
 
 alpha  = 10;     %%% Number of hits per code
 Nbit   = 10;     %%% Number of bits in the ADC in simulink
-N      = 1024 * alpha;   %1024*alpha   %%% Number of simulation points
+
+% Change this for ramp vs sine input
+
+% INL/DNL + Transfer func
+% N      = 1024 * alpha;   %1024*alpha   %%% Number of simulation points
+
+% Spectrum + SNR/ENOB
+N       = 4096;
+
+
 OSR    = 1;      %%% OverSampling Ratio, 1 > for Sigma-Delta and NS-SARs.   
 
 
