@@ -16,10 +16,10 @@ Nbit   = 10;     %%% Number of bits in the ADC in simulink
 % Change this for ramp vs sine input
 
 % INL/DNL + Transfer func
-% N      = 1024 * alpha;   %1024*alpha   %%% Number of simulation points
+N      = 1024 * alpha;   %1024*alpha   %%% Number of simulation points
 
 % Spectrum + SNR/ENOB
-N       = 4096;
+% N       = 4096;
 
 
 OSR    = 1;      %%% OverSampling Ratio, 1 > for Sigma-Delta and NS-SARs.   
@@ -58,17 +58,11 @@ if coherent         %%% To calculate m prime number for fi with coherent samplin
 fi=closest_prime*fs/N;
 end
 
-use_flash_model = 0; % choose which simulink model to use 
-
-if use_flash_model
-    sim('Lab2_ADC_modeling.slx')
-else
-    sim('Lab2_ADC_modeling_SAR.slx')
-end
+sim('Lab2_ADC_modeling_SAR.slx')
 
 %%%%%%%%%%% Plot and process data to calculate SNR and ENOB  %%%%%%%%%%%%
 
-[snr, enob] = gs_fresp(simout, N, fs, fi, OSR, 1)
+[snr, enob] = gs_fresp(simout, N, fs, fi, OSR, 1);
 
 [inl, dnl]=gs_inldnl(simout, Nbit , alpha);
  

@@ -7,7 +7,6 @@ vin_n = 1 - vin_p;
 % Parameters
 Nbit = 4;                              % Number of bits
 LSB = 1/2^Nbit;                        % LSB size (assuming Vp=1 and Vn=0)
-Vcm = 0.5;                             % Common-mode voltage
 
 % Generate the resistor ladders for both positive and negative inputs
 rladder_p = (1:2^Nbit-1)*LSB;   % Positive reference ladder
