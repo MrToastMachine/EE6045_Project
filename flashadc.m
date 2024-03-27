@@ -33,4 +33,6 @@ for i=1:1:2^Nbit-1          %%2^Nbit -1 comparators
     end
 end
 
-y = sum(vout);
+y = sum(vout)
+
+y / 2^Nbit

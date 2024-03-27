@@ -29,7 +29,7 @@ coherent=1;         %%% 1=coherent sampling, 0=non coherent sampling
 
 if coherent         %%% To calculate m prime number for fi with coherent sampling
 
-    m=round(fi*N/fs);  %%% Calculate m 
+    m=round(fi*N/fs);  %% Calculate m 
 
     % Check if the input number is a prime number
     if isprime(m)
@@ -68,7 +68,7 @@ end
 
 %%%%%%%%%%% Plot and process data to calculate SNR and ENOB  %%%%%%%%%%%%
 
-[snr, enob] = gs_fresp(simout, N, fs, fi, OSR, 1);
+[snr, enob] = gs_fresp(simout, N, fs, fi, OSR, 1)
 
 [inl, dnl]=gs_inldnl(simout, Nbit , alpha);
  
